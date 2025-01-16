@@ -1,15 +1,11 @@
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
 import sys
 import os
-
 # Dynamically add the project root to Python's search path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
-# Now import the modules
 from src.model import create_model
 from src.utils import load_data
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 
 def train_and_evaluate(data_path):
     # Load the dataset
