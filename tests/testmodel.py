@@ -1,3 +1,9 @@
+import sys
+import os
+
+# Add the root project directory to sys.path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from src.model import create_model
 
 
