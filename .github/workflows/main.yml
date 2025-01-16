@@ -1,0 +1,28 @@
+name: CI/CD Pipeline
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: pip install flake8
+      - name: Run Linting
+        run: flake8 .
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: pip install pytest
+      - name: Run Tests
+        run: pytest
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mock Deployment
+        run: echo "Deploying Model..."
