@@ -7,10 +7,13 @@ from src.utils import load_data
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
+
 def train_and_evaluate(data_path):
     # Load the dataset
     X, y = load_data(data_path)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    X_train, X_test, y_train, y_test = (
+        train_test_split(X, y, test_size=0.2, random_state=42)
+    )
 
     # Train the model
     model = create_model()
@@ -22,6 +25,7 @@ def train_and_evaluate(data_path):
     print(f"Model Accuracy: {accuracy:.2f}")
 
     return model, accuracy
+
 
 if __name__ == "__main__":
     train_and_evaluate("data/iris.csv")
