@@ -1,10 +1,7 @@
 import sys
 import os
-# Dynamically add the project root to Python's search path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
-from src.model import create_model # type: ignore
-from src.utils import load_data # type: ignore
+from src.model import create_model
+from src.utils import load_data
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
