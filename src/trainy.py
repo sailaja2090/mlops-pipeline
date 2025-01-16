@@ -1,5 +1,3 @@
-import sys
-import os
 from src.model import create_model
 from src.utils import load_data
 from sklearn.model_selection import train_test_split
