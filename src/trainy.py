@@ -1,20 +1,15 @@
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-import sys
-import os
-
-# Dynamically add the project root to Python's search path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
-# Now import the modules
 from src.model import create_model
 from src.utils import load_data
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
 
 def train_and_evaluate(data_path):
     # Load the dataset
     X, y = load_data(data_path)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    X_train, X_test, y_train, y_test = (
+        train_test_split(X, y, test_size=0.2, random_state=42)
+    )
 
     # Train the model
     model = create_model()
@@ -26,6 +21,7 @@ def train_and_evaluate(data_path):
     print(f"Model Accuracy: {accuracy:.2f}")
 
     return model, accuracy
+
 
 if __name__ == "__main__":
     train_and_evaluate("data/iris.csv")
