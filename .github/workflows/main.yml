@@ -8,16 +8,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - name: Set up Python
+      - name: Set up Python 3.10
         uses: actions/setup-python@v4
         with:
-          python-version: '3.12'
+          python-version: '3.10'
 
       - name: Upgrade pip
         run: pip install --upgrade pip
 
-      - name: Install system dependencies
-        run: sudo apt-get update && sudo apt-get install -y libopenblas-dev liblapack-dev gfortran
+      - name: Install numpy
+        run: pip install numpy --find-links=https://pypi.org/simple
 
       - name: Install dependencies
         run: pip install -r requirements.txt
@@ -27,3 +27,11 @@ jobs:
 
       - name: Run Tests
         run: pytest
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: lint-and-test  # Ensures the deployment runs only after linting and tests pass
+    steps:
+      - name: Mock Deployment
+        run: echo "Deploying Model..."
+      # You can add actual deployment steps here, e.g., to AWS, GCP, etc.
