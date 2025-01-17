@@ -7,23 +7,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.12'
+
+      - name: Upgrade pip
+        run: pip install --upgrade pip
+
+      - name: Install system dependencies
+        run: sudo apt-get update && sudo apt-get install -y libopenblas-dev liblapack-dev gfortran
+
       - name: Install dependencies
         run: pip install -r requirements.txt
+
       - name: Run Linting
         run: flake8 .
+
       - name: Run Tests
         run: pytest
-
-  deploy:
-    needs: lint-and-test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Deploy Model
-        run: |
-          echo "Deploying Model..."
-          # Add your deployment script here
